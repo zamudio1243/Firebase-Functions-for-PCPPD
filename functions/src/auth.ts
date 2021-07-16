@@ -13,6 +13,7 @@ export const createUserRecord = functios.auth
         return userRef.set({
             nombre: user.displayName,
             apellido: user.displayName,
-            boleta: ''
+            boleta: '',
+            fotoURL: user.photoURL
         });
     });
