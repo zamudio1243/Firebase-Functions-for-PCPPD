@@ -11,6 +11,7 @@ export const createUserRecord = functios.auth
         const userRef = db.doc(`usuarios/${user.uid}`);
 
         return userRef.set({
+            uid: user.uid,
             nombre: user.displayName,
             apellido: user.displayName,
             boleta: '',
