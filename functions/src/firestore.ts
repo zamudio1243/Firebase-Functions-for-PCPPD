@@ -1,20 +1,33 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+// import { Workspace } from './models/workspace';
+// import { User } from './models/user';
 
 const db = admin.firestore();
 
-export const defaultChannel = functions.firestore
+export const defaultSettings = functions.firestore
     .document('/espacios_de_trabajo/{id}')
-    .onCreate((snapshot,context)=>{
+    .onCreate(async(snapshot,context)=>{
  
         const workSpaceRef = db.doc(`espacios_de_trabajo/${context.params.id}`);
+        //const workSpaceData = <Workspace>(await workSpaceRef.get()).data();
+        
         const channel = {
             "nombre":  "General",
-            "mensajes": [],
             "permisos": []
         };
 
-        return workSpaceRef.update({
-            canales_texto: channel
-        });
+        // const user = await db.collection("usuarios")
+        //     .where("uid", "==", workSpaceData.uid_usuario).get()
+        //     .then((querySnapshot) => {
+        //         querySnapshot.forEach((doc)=> {
+        //             <User> doc.data();
+        //         });
+        //     });
+        
+
+        // workSpaceRef.collection("usuarios").add(user)
+        workSpaceRef.collection("canales_voz").add(channel)
+        return workSpaceRef.collection("canales_texto").add(channel)
+
     });

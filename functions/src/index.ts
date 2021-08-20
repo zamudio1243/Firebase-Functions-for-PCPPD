@@ -1,2 +1,2 @@
 export {createUserRecord} from './auth';
-export {defaultChannel} from './firestore'
+export {defaultSettings} from './firestore'
